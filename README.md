@@ -15,5 +15,5 @@ utilizando o conceito de SPA.
 * Bootstrap.
 
 ##Executando o Projeto:
-###1º - Front-end
+### 1º - Front-end
 No Terminal, vá até a pasta do Front-End e execute a linha de comando: `npm start`
