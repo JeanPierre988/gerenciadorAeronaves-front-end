@@ -1,5 +1,8 @@
 angular.module('app-ga').controller('GAController', ['$scope', 'GAService', function($scope, GAService){
     var self = this;
+
+    $scope.mensagem = '';
+    $scope.status = false;
     
     self.aeronave = {
         id:null,
@@ -41,22 +44,33 @@ angular.module('app-ga').controller('GAController', ['$scope', 'GAService', func
 
     function createAeronave(aeronave) {
         GAService.createAeronave(aeronave)
-            .then(
-                fetchAllAeronaves,
-                function(error){
-                    console.log('Erro ao criar a Aeronave. ' + error);
+            .then( function() {
+                    fetchAllAeronaves();
+                    reset();
+                    $scope.mensagem = 'Aeronave cadastrada com Sucesso';
+                    $scope.status = true;
+                }, function(error){
+                    console.log('Erro ao cadastrar a Aeronave. ' + error);
+                    $scope.mensagem = 'Erro ao cadastrar a Aeronave.'
+                    $scope.status = false;
                 }
             );
     }
 
     function updateAeronave(aeronave, id) {
         GAService.updateAeronave(aeronave, id)
-            .then (
-                fetchAllAeronaves,
-                function(error) {
+            .then (function() {
+                    fetchAllAeronaves();
+                    $scope.mensagem = 'Aeronave atualizada com Sucesso';
+                    $scope.status = true;
+                }, function(error) {
                     console.log('Erro ao atualizar a Aeronave. ' + error);
+                    $scope.mensagem = 'Erro ao cadastrar a Aeronave.'
+                    $scope.status = false;
                 }
-            )
+                
+            );
+        reset();
     }
 
     function edit(id) { //ENVIA INFO PARA FORM PARA REALIZAR ALTERAÇÃO
@@ -79,10 +93,14 @@ angular.module('app-ga').controller('GAController', ['$scope', 'GAService', func
 
     function deleteAeronave(id) { // DELETA
         GAService.deleteAeronave(id)
-            .then(
-                fetchAllAeronaves,
-                function(error) {
+            .then(function() {
+                    fetchAllAeronaves();
+                    $scope.mensagem = 'Aeronave excluida com Sucesso';
+                    $scope.status = true;
+                }, function(error) {
                     console.log('Erro ao excluir a Aeronave. ' + error);
+                    $scope.mensagem = 'Erro ao excluir a Aeronave';
+                    $scope.status = false;
                 }
             )
     }
@@ -96,6 +114,8 @@ angular.module('app-ga').controller('GAController', ['$scope', 'GAService', func
             descricao:'',
             vendido:''
         };
+        $scope.mensagem = '';
+        $scope.status = true;
         $scope.form.$setPristine(); 
     }
 }])

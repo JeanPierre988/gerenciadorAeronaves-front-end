@@ -7,6 +7,7 @@
     <title>Gerenciador de Aeronaves</title>
 
     <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/angular-animate.min.js"></script>
 
     <script src="js/app.js"></script>
 
@@ -15,15 +16,23 @@
 
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/efeitos.css">
 </head>
 <body ng-app="app-ga">
     <div class="generic-container" ng-controller="GAController as ctrl">
+        <div class="jumbotron"> <!-- Título -->
+            <h1 class="text-center">Gerenciador de Aeronaves</h1>
+        </div>
+
+        <p class="alert alert-{{status ? 'info' : 'danger'}} painel-animado" ng-show="mensagem.length">
+            {{mensagem}}
+        </p>
+
         <div class="panel panel-default"> <!-- FORM de CAD/UPDATE-->
             <div class="panel-heading lead">
                 Form de Cadastro de Aeronave
             </div>
             
-
             <div class="formcontainer"> 
                 <form ng-submit="ctrl.submit()" name="form" class="form-horizontal">
                     <input type="hidden" ng-model="ctrl.aeronave.id" />
@@ -31,7 +40,12 @@
                     <div class="row"> <!-- MODELO -->
                         <div class="form-group col-md-12">
                             <div class="col-md-7">
-                                <input type="text" ng-model="ctrl.aeronave.marca" id=marca class="form-control input-sm" placeholder="Marca">
+                                <select ng-model="ctrl.aeronave.marca" id="marca" class="form-control input-sm">
+                                    <option value="">Marca</option>
+                                    <option value="Embraer">Embraer</option>
+                                    <option value="Boing">Boing</option>
+                                    <option value="Airbus">Airbus</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -50,7 +64,11 @@
                                 <input type="text" ng-model="ctrl.aeronave.ano" id=ano class="form-control input-sm" placeholder="Ano">
                             </div>
                             <div class="col-md-3">
-                                <input type="text" ng-model="ctrl.aeronave.vendido" id=vendido class="form-control input-sm" placeholder="Vendido">
+                                <select ng-model="ctrl.aeronave.vendido" id="vendido" class="form-control input-sm">
+                                    <option value="">Vendido</option>
+                                    <option value="true">SIM</option>
+                                    <option value="false">NÃO</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -64,6 +82,10 @@
 
                 </form>
             </div>
+        </div>
+
+        <div class="panel panel-default"> <!-- FILTRO -->
+            <input type="text" ng-model="filtro" class="form-control" placeholder="Perquisa">
         </div>
 
         <div class="panel panel-default"> <!-- LISTAGEM DE AERONAVES -->
@@ -81,12 +103,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="aeronave in ctrl.aeronaves">
+                        <tr ng-repeat="aeronave in ctrl.aeronaves | filter : filtro">
                             <td>{{aeronave.id}}</td>
                             <td>{{aeronave.marca}}</td>
                             <td>{{aeronave.nome}}</td>
                             <td>{{aeronave.ano}}</td>
-                            <td>{{aeronave.vendido}}</td>
+                            <td>{{aeronave.vendido ? 'Sim' : 'NÃO'}}</td>
                             <td class="input-group-btn">
                                 <button type="button" ng-click="ctrl.edit(aeronave.id)" class="btn btn-primary custom-width">ALTERAR</button>
                                 <button type="button" ng-click="ctrl.remove(aeronave.id)" class="btn btn-danger custom-width">EXCLUIR</button>

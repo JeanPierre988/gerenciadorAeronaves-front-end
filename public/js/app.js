@@ -1,1 +1,1 @@
-angular.module('app-ga', []);
+angular.module('app-ga', ['ngAnimate']);
