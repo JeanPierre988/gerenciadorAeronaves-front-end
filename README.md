@@ -21,4 +21,4 @@ utilizando o conceito de SPA.
 
 * 1º. No Terminal, vá até a pasta do Front-End e execute a linha de comando: `npm install`
 * 2º. Após a instalação, execute o seguinte comando: `npm start`
-* 3º. Com a aplicação rodando, acesse o link `http://localhost:3000`
+* 3º. Com a aplicação rodando, acesse o link http://localhost:3000
