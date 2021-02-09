@@ -15,5 +15,6 @@ utilizando o conceito de SPA.
 * Bootstrap.
 
 ##Executando o Projeto:
+*necessário ter instalado NODE.js*
 ### 1º - Front-end
 No Terminal, vá até a pasta do Front-End e execute a linha de comando: `npm start`
