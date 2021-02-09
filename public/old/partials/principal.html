@@ -1,0 +1,85 @@
+<div class="jumbotron"> <!-- DESTAQUE para o título-->
+    <h1 class="text-center">Gerenciador de Aeronaves</h1>
+</div>
+
+<p class="alert alert-info" ng-show="mensagem.length">
+    {{mensagem}}
+</p>
+<div class="page-header text-center">
+    <h1>{{aeronave.titulo}}</h1>
+</div>
+<div class="formcontainer">
+    <form novalidate name="formulario" class="row" ng-submit="submeter()">
+        <div class="col-md-12">
+            <div class="form-group"> <!-- MARCA -->
+                <select ng-model="aeronave.marca" name="marca" class="form-control" required>
+                    <option value="">Marca</option>
+                    <option value="Embraer">Embraer</option>
+                    <option value="Boing">Boing</option>
+                    <option value="Airbus">Airbus</option>
+                </select>
+                <span ng-show="formulario.$submitted && formulario.marca.$error.required" class="form-control alert-danger">
+                    Selecione uma opção
+                </span>
+            </div>
+    
+            <div class="form-group"> <!-- NOME -->
+                <label>Nome</label>
+                <input ng-model="aeronave.nome" name="nome" class="form-control" required>
+                <span ng-show="formulario.$submitted && formulario.nome.$error.required" class="form-control alert-danger">
+                    NOME obrigatório
+                </span>
+            </div>
+    
+            <div class="form-group"> <!-- DESCRIÇÃO -->
+                <label>Descrição</label>
+                <input ng-model="aeronave.descricao" name="descricao" class="form-control">
+            </div>
+    
+            <div class="form-group"> <!-- ANO e VENDIDO -->
+                <div class="col-md-6">
+                    <input ng-model="aeronave.ano" name="ano" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <select ng-model="aeronave.vendido" name="vendido" class="form-control">
+                        <option value="">Vendido</option>
+                        <option value="true">SIM</option>
+                        <option value="false">NÃO</option>
+                    </select>
+                </div>
+            </div>
+    
+            <hr>
+    
+            <div> <!-- BOTÕES -->
+                <button type="submit" class="btn btn-primary" ng-disabled="formulario.$invalid">
+                    Salvar
+                </button>
+                <a href="/" class="btn btn-primary">Voltar</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row"> <!-- Classe row do Bootstrap -->
+    <div class="col-md-12">
+        <form>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <a href="gerenciador/new" class="btn btn-primary">Nova Aeronave</a>
+                </span>
+                <input ng-model="filtro" ng-model-options="{ debounce:400 }" class="form-control" placeholder="filtrar" />
+            </div>
+        </form>
+    </div><!-- fim col-md-12 -->
+</div><!-- fim row -->
+
+<div class="row">
+    <meu-painel class="col-md-2 painel-animado" ng-repeat="aeronave in aeronaves | filter: filtro" titulo="{{aeronave.id}}">
+        <span>{{aeronave.nome}} // {{aeronave.ano}}</span>
+        <div class="input-group-btn">
+            <a href="gerenciador/edit/{{aeronave.id}}" class="btn btn-primary">Editar</a>
+            <button ng-click="remover(aeronave)" class="btn btn-danger">Remover</button>
+        </div>
+    </meu-painel><!-- fim Panel -->
+</div>

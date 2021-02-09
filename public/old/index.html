@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="app-aeronaves">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+
+        <base href="/">
+
+        <title>Gerenciador de Aeronaves</title>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/efeitos.css">
+
+        <script src="js/lib/angular.min.js"></script>
+        <script src="js/lib/angular-animate.min.js"></script>
+        <script src="js/lib/angular-route.min.js"></script>
+        <script src="js/lib/angular-resource.min.js"></script>
+
+        <script src="js/main.js"></script>
+        <script src="js/controllers/aeronaves-controller.js"></script>
+        <script src="js/controllers/aeronave-controller.js"></script>
+        <script src="js/directives/minhas-diretivas.js"></script>
+
+        <script src="js/services/meus-servicos.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            
+            <ng-view></ng-view> <!-- SPA -->
+
+        </div> <!-- fim container -->   
+    </body>
+</html>
