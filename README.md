@@ -14,7 +14,11 @@ utilizando o conceito de SPA.
 * HTML e CSS;
 * Bootstrap.
 
+## Requisitos
+* NODE.js (`https://nodejs.org/`)
+
 ## Executando o Projeto:
-*necessário ter instalado NODE.js*
-### 1º - Front-end
-No Terminal, vá até a pasta do Front-End e execute a linha de comando: `npm start`
+
+* 1º. No Terminal, vá até a pasta do Front-End e execute a linha de comando: `npm install`
+* 2º. Após a instalação, execute o seguinte comando: `npm start`
+* 3º. Com a aplicação rodando, acesse o link `http://localhost:3000`
