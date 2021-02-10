@@ -15,7 +15,7 @@ utilizando o conceito de SPA.
 * Bootstrap.
 
 ## Requisitos
-* NODE.js (`https://nodejs.org/`)
+* NODE.js (https://nodejs.org/)
 
 ## Executando o Projeto:
 
