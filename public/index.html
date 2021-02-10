@@ -34,13 +34,13 @@
             </div>
             
             <div class="formcontainer"> 
-                <form ng-submit="ctrl.submit()" name="form" class="form-horizontal">
+                <form ng-submit="ctrl.submit()" name="form" class="form-horizontal" >
                     <input type="hidden" ng-model="ctrl.aeronave.id" />
 
                     <div class="row"> <!-- MODELO -->
                         <div class="form-group col-md-12">
                             <div class="col-md-7">
-                                <select ng-model="ctrl.aeronave.marca" id="marca" class="form-control input-sm">
+                                <select ng-model="ctrl.aeronave.marca" name="marca" id="marca" class="form-control input-sm">
                                     <option value="">Marca</option>
                                     <option value="Embraer">Embraer</option>
                                     <option value="Boing">Boing</option>
@@ -53,7 +53,7 @@
                     <div class="row"> <!-- NOME -->
                         <div class="form-group col-md-12">
                             <div class="col-md-7">
-                                <input type="text" ng-model="ctrl.aeronave.nome" id=nome class="form-control input-sm" placeholder="Aeronave">
+                                <input type="text" ng-model="ctrl.aeronave.nome" id="nome" class="form-control input-sm" placeholder="Aeronave" >
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                     <div class="row"> <!-- ANO e VENDIDO-->
                         <div class="form-group col-md-12">
                             <div class="col-md-4">
-                                <input type="text" ng-model="ctrl.aeronave.ano" id=ano class="form-control input-sm" placeholder="Ano">
+                                <input type="number" ng-model="ctrl.aeronave.ano" name="ano" id="ano" class="form-control input-sm" placeholder="Ano" maxlength="4" required>
                             </div>
                             <div class="col-md-3">
                                 <select ng-model="ctrl.aeronave.vendido" id="vendido" class="form-control input-sm">
@@ -92,8 +92,14 @@
             </div>
         </div>
 
+        <div class="panel panel-default">
+            <div ng-repeat="marcas in ctrl.marcas">
+                {{marcas.nome}} | {{marcas.qntd}}
+            </div>
+        </div>
+
         <div class="panel panel-default"> <!-- FILTRO -->
-            <input type="text" ng-model="filtro" class="form-control" placeholder="Perquisa">
+            <input type="text" ng-model="filtro" class="form-control" placeholder="Pesquisa">
         </div>
 
         <div class="panel panel-default"> <!-- LISTAGEM DE AERONAVES -->

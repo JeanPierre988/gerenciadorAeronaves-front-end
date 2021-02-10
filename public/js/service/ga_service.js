@@ -5,6 +5,7 @@ angular.module('app-ga')
         var factory = {
             fetchAllAeronaves : fetchAllAeronaves,
             createAeronave : createAeronave,
+            countMarcas : countMarcas,
             updateAeronave : updateAeronave,
             deleteAeronave : deleteAeronave
         };
@@ -20,6 +21,21 @@ angular.module('app-ga')
 
                     }, function(error) {
                         console.log('SERVICE : Erro ao listar as Aeronaves. ' + error);
+                        deferred.reject(error);
+                    }
+                );
+            return deferred.promise;
+        }
+
+        function countMarcas() { 
+            var deferred = $q.defer();
+            $http.get(BACK_END+'marcas-total')
+                .then(
+                    function(response) {
+                        deferred.resolve(response.data);
+
+                    }, function(error) {
+                        console.log('SERVICE : countMarcas. ' + error);
                         deferred.reject(error);
                     }
                 );

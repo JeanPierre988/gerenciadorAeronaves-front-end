@@ -12,6 +12,12 @@ angular.module('app-ga').controller('GAController', ['$scope', 'GAService', func
         descricao:'',
         vendido:''
     };
+
+    self.marcas = {
+        nome:'',
+        qntd:''
+    }
+
     self.aeronaves = [];
     self.submit = submit;
     self.edit = edit;
@@ -21,6 +27,7 @@ angular.module('app-ga').controller('GAController', ['$scope', 'GAService', func
     fetchAllAeronaves();
 
     function fetchAllAeronaves(){ 
+        countMarcas();
         GAService.fetchAllAeronaves()
             .then(
                 function(d) {
@@ -28,6 +35,18 @@ angular.module('app-ga').controller('GAController', ['$scope', 'GAService', func
                 },
                 function(error) {
                     console.log('CONTROLLER : Erro ao listar as Aeronaves');
+                }
+            );
+    }
+
+    function countMarcas(){ 
+        GAService.countMarcas()
+            .then(
+                function(d) {
+                    self.marcas = d;
+                },
+                function(error) {
+                    console.log('CONTROLLER : MARCAS');
                 }
             );
     }
